@@ -76,7 +76,7 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
         plt.pause(1)
     
     print(f"Pilih iterasi yang diinginkan: ")
-    print(f"1.  Iterasi mulai dari 0 sampai {len(bfx)}: ")
+    print(f"1.  Iterasi mulai dari 0 sampai {len(bfx)-1}: ")
     print("2.  (-1) untuk menonton kembali proses pembentukan [tidak pakai kurung]")
     print("3.  (-2) untuk selesai [tidak pakai kurung]")
     iter = int(input("Iterasi ke: "))
@@ -95,7 +95,7 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
             plt.pause(1)
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f"Pilih iterasi yang diinginkan: ")
-        print(f"1.  Iterasi mulai dari 0 sampai {len(bfx)}: ")
+        print(f"1.  Iterasi mulai dari 0 sampai {len(bfx)-1}: ")
         print("2.  (-1) untuk menonton kembali proses pembentukan [tidak pakai kurung]")
         print("3.  (-2) untuk selesai [tidak pakai kurung]")
         iter = int(input("Iterasi ke: "))
