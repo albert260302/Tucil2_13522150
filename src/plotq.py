@@ -1,49 +1,108 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.animation import FuncAnimation
-import time
+import os
 
-def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy):
-    # Function to generate random data points
-    def generate_data():
-        x = np.arange(0, 10, 0.1)
-        y = np.sin(x)
-        return x, y
+style={0:"c-", 1:"m-",2:"y-"}
+def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
 
-    # Function to update the plot
+
     def update(n):
 
+        fig.suptitle(f"iterasi {n}")
         ax1.clear()
         ax1.plot(bfx[n], bfy[n],'b-')
         ax1.plot(orix,oriy, 'go--')
         ax1.set_title(f'Brute Force Method')
         ax1.set_xlabel('X')
         ax1.set_ylabel('Y')
-        ax1.set_xlim(np.min(bfx[n])-1, np.max(bfx[n])+1)
-        ax1.set_ylim(np.min(bfy[n])-1, np.max(bfy[n])+1)
-        ax1.set_aspect((np.max(bfx[n])-np.min(bfx[n])) / (np.max(bfy[n])-np.min(bfy[n])))  # Adjust aspect ratio
+        minx = min(np.min(bfx[n]),np.min(orix))
+        miny = min(np.min(bfy[n]),np.min(oriy))
+        maxx = max(np.max(bfx[n]),np.max(orix))
+        maxy = max(np.max(bfy[n]),np.max(oriy))
+        ax1.set_xlim(minx-1, maxx+1)
+        ax1.set_ylim(miny-1, maxy+1)
+        ax1.set_aspect((maxx-minx) / (maxy-miny))  
+
 
         ax2.clear()
-        ax2.plot(dnqx[n], dnqy[n],'r-')
+      
+        if (n!=0):
+            ax2.plot(orix,oriy, 'go--')
+            minx = min(np.min(dnqx[n]),np.min(orix))
+            miny = min(np.min(dnqy[n]),np.min(oriy))
+            maxx = max(np.max(dnqx[n]),np.max(orix))
+            maxy = max(np.max(dnqy[n]),np.max(oriy))
+            ax2.set_xlim(minx-1, maxx+1)
+            ax2.set_ylim(miny-1, maxy+1)
+            lenStep = len(cpointx[n])
+            k = 2
+            while k < lenStep:
+                for j in range(len(cpointx[n][k])):
+                    plt.scatter(cpointx[n][k][j],cpointy[n][k][j],color='black',marker='o',label='Dots',s=10)
+                k += 3
+            for i in range(lenStep-1,-1,-1):
+                for j in range(0,len(cpointx[n][i])-1):
+                        ax2.plot(cpointx[n][i][j:j+2], cpointy[n][i][j:j+2],style[i%3])
+                        plt.pause(0.2)
+            for i in range(len(dnqx[n])-1):
+                ax2.plot(dnqx[n][i:i+2],dnqy[n][i:i+2],'r-')
+                plt.pause(0.5)
+            plt.pause(1)
+        ax2.clear()
         ax2.plot(orix,oriy, 'go--')
+        if (n==0):
+            plt.pause(1)
+        ax2.plot(dnqx[n], dnqy[n],'r-')
+        minx = min(np.min(dnqx[n]),np.min(orix))
+        miny = min(np.min(dnqy[n]),np.min(oriy))
+        maxx = max(np.max(dnqx[n]),np.max(orix))
+        maxy = max(np.max(dnqy[n]),np.max(oriy))
+        ax2.set_xlim(minx-1, maxx+1)
+        ax2.set_ylim(miny-1, maxy+1)
         ax2.set_title(f'Divide and Conquer Method')
         ax2.set_xlabel('X')
         ax2.set_ylabel('Y')
-        ax2.set_xlim(np.min(dnqx[n])-1, np.max(dnqx[n])+1)
-        ax2.set_ylim(np.min(dnqy[n])-1, np.max(dnqy[n])+1)
-        ax2.set_aspect((np.max(dnqx[n])-np.min(dnqx[n])) / (np.max(dnqy[n])-np.min(dnqy[n])))  # Adjust aspect ratio
+        
+        ax2.set_aspect((maxx-minx) / (maxy-miny)) 
 
-        fig.suptitle(f"iterasi {n}")
+        
 
-    # Create a figure and multiple axes objects
+
     fig, (ax1,ax2) = plt.subplots(1,2)
    
 
     for i in range(len(bfx)):
-        update(i+1)
+        update(i)
         plt.pause(1)
+    
+    print(f"Pilih iterasi yang diinginkan: ")
+    print(f"1.  Iterasi mulai dari 0 sampai {len(bfx)}: ")
+    print("2.  (-1) untuk menonton kembali proses pembentukan [tidak pakai kurung]")
+    print("3.  (-2) untuk selesai [tidak pakai kurung]")
+    iter = int(input("Iterasi ke: "))
 
-    plt.show()
+    while (iter!=-2):
+        if (iter>len(bfx) and iter < -2):
+            print(f"Iterasi di luar jangkauan !")
+            print(f"Input kembali")
+            print()
+        elif (iter==-1): 
+            for i in range(len(bfx)):
+                update(i)
+                plt.pause(1)
+        else:
+            update(iter)
+            plt.pause(1)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(f"Pilih iterasi yang diinginkan: ")
+        print(f"1.  Iterasi mulai dari 0 sampai {len(bfx)}: ")
+        print("2.  (-1) untuk menonton kembali proses pembentukan [tidak pakai kurung]")
+        print("3.  (-2) untuk selesai [tidak pakai kurung]")
+        iter = int(input("Iterasi ke: "))
+
+    print("Terima kasih, sehat-sehat selalu !")
+    plt.pause(2)
+    plt.close()
 
     
 

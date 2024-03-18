@@ -11,7 +11,7 @@ def jumlahtitik(n:int):
         return 2*jumlahtitik(n-1)-1
     
 def niter(n, iter):
-    if (iter==1):
-        return n
+    if (iter==0):
+        return 2
     else:
         return niter(2*n-1,iter-1)

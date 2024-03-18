@@ -21,11 +21,12 @@ def bruteForce(n:int,pointx,pointy):
             arry.append(pointy[len(pointy)-1])
     recordx = {}
     recordy = {}
-    for i in range(n,0,-1):
+    for i in range(n,-1,-1):
         if (i==n):      
             recordx[i] = arrx
             recordy[i] = arry
         else:
             recordx[i] = recordx[i+1][::2]
             recordy[i] = recordy[i+1][::2]
+
     return recordx,recordy
