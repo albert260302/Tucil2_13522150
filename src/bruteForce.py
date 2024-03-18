@@ -1,8 +1,10 @@
 from lib.subFunction import *
 
+# Menghitung B(t) untuk titik p
 def bruteForceT(max:int,t:float,j:int,p:float)->float:
     return math.comb(max-1,j)*((1-t)**(max-1-j))*(t**(j))*p
 
+# Fungsi utama metode Brute Force
 def bruteForce(n:int,pointx,pointy):
     step = 1/(jumlahtitik(n)-1)
     x = np.arange(0,1,step)

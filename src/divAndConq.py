@@ -1,5 +1,6 @@
 from lib.subFunction import *
 
+#Mencai titik-titik kontrol dan menyimpannya sekaligus hasil
 def findControlPoint(point, result, cpoint, iter):
     length = len(point)
     if length == 2:
@@ -27,6 +28,7 @@ def findControlPoint(point, result, cpoint, iter):
 
     return result
 
+# Fungsi implementasi Divide and Conquer dalam mendekomposisi masalah menggunakan pendekatan rekursi
 def dncRekursi(n:int, point, result, cpoint, max_val):
     length = len(point)
     if n == 0:
@@ -42,6 +44,7 @@ def dncRekursi(n:int, point, result, cpoint, max_val):
         dncRekursi(n - 1, newPoint[newLength // 2:newLength], resultR, cpoint, max_val)
         result[:] = resultL + [newPoint[newLength // 2]] + resultR
 
+# Fungsi utama metode Divide and Conquer
 def dvnconq(n:int, pointx, pointy):
     recordx = {}
     recordy = {}
