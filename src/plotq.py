@@ -25,7 +25,7 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
 
 
         ax2.clear()
-      
+
         if (n!=0):
             ax2.plot(orix,oriy, 'go--')
             minx = min(np.min(dnqx[n]),np.min(orix))
@@ -34,6 +34,9 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
             maxy = max(np.max(dnqy[n]),np.max(oriy))
             ax2.set_xlim(minx-1, maxx+1)
             ax2.set_ylim(miny-1, maxy+1)
+            ax2.set_title(f'Divide and Conquer Method')
+            ax2.set_xlabel('X')
+            ax2.set_ylabel('Y')
             lenStep = len(cpointx[n])
             k = 2
             while k < lenStep:
@@ -43,7 +46,7 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
             for i in range(lenStep-1,-1,-1):
                 for j in range(0,len(cpointx[n][i])-1):
                         ax2.plot(cpointx[n][i][j:j+2], cpointy[n][i][j:j+2],style[i%3])
-                        plt.pause(0.2)
+                        plt.pause(1/(len(cpointx[n][i])-1))
             for i in range(len(dnqx[n])-1):
                 ax2.plot(dnqx[n][i:i+2],dnqy[n][i:i+2],'r-')
                 plt.pause(0.5)

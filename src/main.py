@@ -1,13 +1,11 @@
 from divAndConq import *
 from bruteForce import *
 from plotq import *
-import matplotlib.pyplot as plt
+import time
 
 
 
 if __name__=="__main__":
-    # flag = True
-    # while flag:
     pointx = np.array([])
     pointy = np.array([])
     cpointx = {}
@@ -18,9 +16,16 @@ if __name__=="__main__":
         pointx = np.append(pointx,px)
         pointy = np.append(pointy,py)
     niter = int(input("Masukkan jumlah iterasi: "))
- 
-    conqx,conqy,cpointx,cpointy = dvnconq(niter,pointx,pointy)
+    print()
+    print("Waktu yang dibutuhkan")
+    start = time.time()
     brutex,brutey = bruteForce(niter,pointx,pointy)
+    end = time.time()
+    print(f"Brute Force: {(end-start)*1000} ms")
+    start  = time.time()
+    conqx,conqy,cpointx,cpointy = dvnconq(niter,pointx,pointy)
+    end = time.time()
+    print(f"Divide and Conquer: {(end-start)*1000} ms")
 
     animate_subplots(pointx,pointy,brutex,brutey,conqx,conqy,cpointx,cpointy)
 

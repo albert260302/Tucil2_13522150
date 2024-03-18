@@ -9,7 +9,12 @@ def jumlahtitik(n:int):
         return 3
     else:
         return 2*jumlahtitik(n-1)-1
-    
+
+def round(n):
+    if (n> int(n)+0.5):
+        return math.ceil(n)
+    else:
+        return math.floor(n)
 def niter(n, iter):
     if (iter==0):
         return 2
