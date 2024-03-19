@@ -8,6 +8,7 @@
 * [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Usage](#usage)
+* [Room for Improvement](#room-for-improvement)
 * [Profile](#profile)
 ## General Information
 Kurva Bézier adalah kurva yang digunakan luas dalam desain grafis, animasi, dan manufaktur karena kemampuannya menciptakan kurva halus. Kurva ini dibentuk oleh titik-titik kontrol yang menentukan bentuk dan arahnya. Pembuatan kurva Bézier relatif mudah dengan menghubungkan titik-titik kontrolnya. Kurva ini memiliki aplikasi praktis dalam berbagai bidang, seperti alat pena dalam perangkat lunak desain grafis, animasi realistis, desain produk yang kompleks, dan pembuatan font yang artistik. Keunggulan kurva Bézier adalah kemampuannya untuk diubah dan dimanipulasi dengan mudah, sehingga memungkinkan pembuatan desain yang presisi dan sesuai dengan kebutuhan.
@@ -30,8 +31,13 @@ Kurva Bézier adalah kurva yang digunakan luas dalam desain grafis, animasi, dan
 ## Usage
     cd src
     py main.py
-
-# Profile
+## Room for Improvement
+### Room for Improvement:
+* I/O file
+### To-do:
+* input from .txt file feature
+* output to gif file feature
+## Profile
 * Nama: Albert Ghazaly
 * NIM: 13522150
 * Kelas: K03
