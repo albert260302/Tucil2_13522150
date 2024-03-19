@@ -18,13 +18,10 @@ def bruteForce(n:int,pointx,pointy):
             else:
                 arrx[i] += bernsteinPoly(len(pointx),x[i],j,pointx[j])
                 arry[i] += bernsteinPoly(len(pointy),x[i],j,pointy[j])
-
     recordx = {}
     recordy = {}
-
     x = np.arange(0,1,step)
     x = np.append(x,1)
-    print(x)
     resultx = []
     resulty = []
     for i in x:

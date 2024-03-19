@@ -26,7 +26,6 @@ if __name__=="__main__":
     conqx,conqy,cpointx,cpointy = dvnconq(niter,pointx,pointy)
     end = time.time()
     print(f"Divide and Conquer: {(end-start)*1000} ms")
-
     animate_subplots(pointx,pointy,brutex,brutey,conqx,conqy,cpointx,cpointy)
 
 

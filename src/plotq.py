@@ -7,11 +7,10 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
 
 
     def update(n):
-
         fig.suptitle(f"iterasi {n}")
+
         ax1.clear()
-        ax1.plot(bfx[n], bfy[n],'b-')
-        ax1.plot(orix,oriy, 'go--')
+        ax2.clear()
         ax1.set_title(f'Brute Force Method')
         ax1.set_xlabel('X')
         ax1.set_ylabel('Y')
@@ -21,10 +20,15 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
         maxy = max(np.max(bfy[n]),np.max(oriy))
         ax1.set_xlim(minx-1, maxx+1)
         ax1.set_ylim(miny-1, maxy+1)
-        ax1.set_aspect((maxx-minx) / (maxy-miny))  
+        ax1.plot(orix,oriy, 'go--') 
+        for i in range(len(bfx[n])-1):
+            ax1.plot(bfx[n][i:i+2], bfy[n][i:i+2],'bo-')
+            plt.pause(0.5)
+
+        ax1.set_aspect((maxx-minx) / (maxy-miny)) 
 
 
-        ax2.clear()
+        
 
         if (n!=0):
             ax2.plot(orix,oriy, 'go--')
@@ -49,13 +53,13 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
                         plt.pause(1/(len(cpointx[n][i])-1))
             for i in range(len(dnqx[n])-1):
                 ax2.plot(dnqx[n][i:i+2],dnqy[n][i:i+2],'r-')
-                plt.pause(0.5)
+                plt.pause(5/len(dnqx[n]))
             plt.pause(1)
         ax2.clear()
         ax2.plot(orix,oriy, 'go--')
         if (n==0):
             plt.pause(1)
-        ax2.plot(dnqx[n], dnqy[n],'r-')
+        ax2.plot(dnqx[n], dnqy[n],'ro-')
         minx = min(np.min(dnqx[n]),np.min(orix))
         miny = min(np.min(dnqy[n]),np.min(oriy))
         maxx = max(np.max(dnqx[n]),np.max(orix))
@@ -67,6 +71,8 @@ def animate_subplots(orix, oriy,bfx,bfy, dnqx,dnqy,cpointx,cpointy):
         ax2.set_ylabel('Y')
         
         ax2.set_aspect((maxx-minx) / (maxy-miny)) 
+
+
 
         
 
